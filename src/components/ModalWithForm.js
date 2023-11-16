@@ -1,32 +1,42 @@
 import iconClose from '../images/icon-close.svg';
+import '../blocks/ModalWithForm.css';
 
-export default function ModalWithForm() {
+export default function ModalWithForm({ type, title, button, handleClosePopup }) {
   return (
-    <div className="popup popup__new-clothes">
-      <div class="popup__container popup__container_type_form">
-        <button class="popup__btn-close">
-          <img src={iconClose} alt="Close" class="popup__btn-close-img" />
+    <div className={`popup popup__${type}`}>
+      <div className="popup__container popup__container_type_form">
+        <button onClick={handleClosePopup} className="popup__btn-close">
+          <img src={iconClose} alt="Close" className="popup__btn-close-img" />
         </button>
-        <h2 class="popup__title">New garment</h2>
-        <label className="popup__label">Name</label>
-        <form class="popup__form" name="newCardForm">
-          <input
-            required
-            type="text"
-            id="card-title"
-            minlength="2"
-            maxlength="30"
-            name="name"
-            class="popup__form-input"
-            value=""
-            placeholder="Title"
-          />
-          <span class="popup__input-error card-title-error"></span>
-          <input required type="url" id="card-link" name="link" class="popup__form-input" value="" placeholder="Image link" />
-          <span class="popup__input-error card-link-error"></span>
-          <button disabled type="submit" class="popup__btn-submit popup__btn-submit_disabled">
-            Save
-          </button>
+        <h2 className="popup__title">{title}</h2>
+
+        <form className="popup__form" name="newClothesFrom">
+          <label className="popup__label">Name</label>
+          <input required type="text" id="card-title" minLength="2" maxLength="30" name="name" className="popup__form-input" placeholder="Name" />
+          <span className="popup__input-error card-title-error"></span>
+          <label className="popup__label">Name</label>
+          <input required type="url" id="card-link" name="link" className="popup__form-input" placeholder="Image link" />
+          <span className="popup__input-error card-link-error"></span>
+          <fieldset className="popup__fieldset">
+            <legend className="popup__legend">New garment</legend>
+            <div>
+              <input type="radio" id="hot" name="weather" />
+              <label htmlFor="hot">Hot</label>
+            </div>
+
+            <div>
+              <input type="radio" id="warm" name="weather" />
+              <label htmlFor="warm">Warm</label>
+            </div>
+            <div>
+              <input type="radio" id="cold" name="weather" />
+              <label htmlFor="cold">Cold</label>
+            </div>
+
+            <button type="submit" className="popup__btn-submit">
+              {button}
+            </button>
+          </fieldset>
         </form>
       </div>
     </div>

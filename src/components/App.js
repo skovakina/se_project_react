@@ -9,6 +9,7 @@ import ItemCard from './ItemCard';
 
 import Main from './Main';
 import ModalWithForm from './ModalWithForm';
+import { useState } from 'react';
 
 function App() {
   function getPosition() {
@@ -27,13 +28,23 @@ function App() {
 
   const weatherTemp = '75';
 
+  const [activeModal, setActiveModal] = useState('');
+  const handleOpenPopup = () => {
+    setActiveModal('create');
+  };
+
+  const handleClosePopup = () => {
+    console.log('click');
+    setActiveModal('');
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header onOpenPopup={handleOpenPopup} />
       <WeatherCard day={true} weather="cloudy" weatherTemp={weatherTemp} />
 
       <Main weatherTemp={weatherTemp} />
-      <ModalWithForm />
+      {activeModal === 'create' && <ModalWithForm type="newClothes" title="New garment" button="Add garment" handleClosePopup={handleClosePopup} />}
       <Footer />
     </div>
   );

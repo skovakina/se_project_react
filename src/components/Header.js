@@ -2,7 +2,7 @@ import '../blocks/Header.css';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
 
-export default function Header() {
+export default function Header({ onOpenPopup }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
   return (
@@ -14,7 +14,7 @@ export default function Header() {
         </div>
 
         <div className="header__profile">
-          <button type="text" className="header__profile-add-clothes-btn">
+          <button onClick={onOpenPopup} type="text" className="header__profile-add-clothes-btn">
             + Add clothes
           </button>
           <div className="header__profile-user-name">Terrence Tegegne</div>
