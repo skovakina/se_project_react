@@ -1,0 +1,9 @@
+.App {
+  /* layout */
+  width: 100%;
+  max-width: 1360px;
+  margin: 32px auto 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 24px - 32px); /* margins */
+}
