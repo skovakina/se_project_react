@@ -1,11 +1,11 @@
 // https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
-const APIkey = '689067eb0476d44549cf63777eeec326';
-const lat = 20;
-const lon = 20;
+const APIkey = '8e9b6c701c1c48737f12e387a8724a0c';
+const lat = 33.44;
+const lon = -94.04;
 
 export default function getWeather() {
-  const weatherApi = fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}`).then((res) => {
+  const weatherApi = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIkey}`).then((res) => {
     if (res.ok) {
       return res.json();
     } else {

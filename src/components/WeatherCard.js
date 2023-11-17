@@ -1,6 +1,6 @@
 import '../blocks/WeatherCard.css';
 
-export default function WeatherCard({ day, weather, weatherTemp = '' }) {
+export default function WeatherCard({ day, weather, weatherTemp = '', weatherDesc = '' }) {
   const timeOfDay = day ? 'day' : 'night';
   const weatherImage = `../images/${timeOfDay}-${weather}.png`;
 
