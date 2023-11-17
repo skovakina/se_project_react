@@ -2,7 +2,7 @@ import '../blocks/WeatherCard.css';
 
 export default function WeatherCard({ day, weather, weatherTemp = '', weatherDesc = '' }) {
   const timeOfDay = day ? 'day' : 'night';
-  const weatherImage = `../images/${timeOfDay}-${weather}.png`;
+  const weatherImage = require(`../images/${timeOfDay}-${weather}.png`);
 
   return (
     <section className="weather-card">
