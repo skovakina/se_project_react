@@ -1,10 +1,10 @@
 import '../blocks/ItemCard.css';
 
-export default function ItemCard({ key, name, link }) {
+export default function ItemCard({ card, onSelectCard }) {
   return (
-    <li className="item-card" key={key}>
-      <div className="item-card__text">{name}</div>
-      <img src={link} alt="WTWR logo" className="item-card__image" />
+    <li className="item-card" key={card.key} onClick={() => onSelectCard(card)}>
+      <div className="item-card__text">{card.name}</div>
+      <img src={card.link} alt="WTWR logo" className="item-card__image" />
     </li>
   );
 }

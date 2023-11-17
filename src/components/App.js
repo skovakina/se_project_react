@@ -5,7 +5,7 @@ import getWeather from '../utils/weatherApi';
 import Footer from './Footer';
 import Header from './Header';
 import WeatherCard from './WeatherCard';
-import ItemCard from './ItemCard';
+import ModalItem from './ModalItem';
 
 import Main from './Main';
 import ModalWithForm from './ModalWithForm';
@@ -29,6 +29,8 @@ function App() {
   const weatherTemp = '75';
 
   const [activeModal, setActiveModal] = useState('');
+  const [selectedCard, setSelectedCard] = useState({});
+
   const handleOpenPopup = () => {
     setActiveModal('create');
   };
@@ -38,13 +40,22 @@ function App() {
     setActiveModal('');
   };
 
+  const handleSelectedCard = (card) => {
+    setSelectedCard(card);
+    setActiveModal('preview');
+  };
+
   return (
     <div className="App">
       <Header onOpenPopup={handleOpenPopup} />
       <WeatherCard day={true} weather="cloudy" weatherTemp={weatherTemp} />
 
-      <Main weatherTemp={weatherTemp} />
+      <Main weatherTemp={weatherTemp} onSelectCard={handleSelectedCard} />
+
       {activeModal === 'create' && <ModalWithForm type="newClothes" title="New garment" button="Add garment" handleClosePopup={handleClosePopup} />}
+
+      {activeModal === 'preview' && <ModalItem selectedCard={selectedCard} handleClosePopup={handleClosePopup} />}
+
       <Footer />
     </div>
   );

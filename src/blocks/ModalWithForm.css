@@ -39,7 +39,7 @@
   top: 20px;
   right: 28px;
   cursor: pointer;
-  background: transparent;
+  /* background: transparent; */
   border: none;
   padding: 0;
 }
@@ -58,7 +58,7 @@
   font-size: 24px;
   font-weight: 900;
   margin: 0;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .popup__form {
