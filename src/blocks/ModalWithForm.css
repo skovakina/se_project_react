@@ -39,7 +39,7 @@
   top: 20px;
   right: 28px;
   cursor: pointer;
-  /* background: transparent; */
+  background: transparent;
   border: none;
   padding: 0;
 }
@@ -132,46 +132,4 @@
   border: none;
   margin: 0;
   padding: 0;
-}
-
-@media (max-width: 600px) {
-  .popup__btn-close {
-    top: -40px;
-    right: 0px;
-  }
-
-  .popup__btn-close-img {
-    width: 26px;
-    height: 26px;
-  }
-
-  .popup__container {
-    width: 238px;
-    padding: 25px 22px;
-    margin: 0 19px;
-  }
-
-  .popup__title {
-    font-size: 18px;
-  }
-
-  .popup__btn-submit {
-    height: 46px;
-    font-size: 14px;
-  }
-
-  .popup__container_type_picture {
-    width: 75vw;
-    margin: 30px;
-  }
-  .popup__container_type_picture .popup__btn-close {
-    top: -5px;
-    right: -5px;
-  }
-}
-
-@media (max-width: 320px) {
-  .popup__container {
-    width: 80vw;
-  }
 }
