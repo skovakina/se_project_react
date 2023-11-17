@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.52a8d786.css",
+    "main.js": "/static/js/main.dfddcefc.js",
+    "static/media/CabinetGrotesk-Extrabold.woff": "/static/media/CabinetGrotesk-Extrabold.a1697f300262b7de9878.woff",
+    "static/media/CabinetGrotesk-Bold.woff": "/static/media/CabinetGrotesk-Bold.4e6ceb64c2d0c044d897.woff",
+    "static/media/CabinetGrotesk-Regular.woff": "/static/media/CabinetGrotesk-Regular.513117a4acf2bda47c67.woff",
+    "static/media/CabinetGrotesk-Extralight.woff": "/static/media/CabinetGrotesk-Extralight.b082282b9e0a07533d4e.woff",
+    "static/media/CabinetGrotesk-Light.woff": "/static/media/CabinetGrotesk-Light.bfd00663a78d2bcf7f41.woff",
+    "static/media/CabinetGrotesk-Medium.woff": "/static/media/CabinetGrotesk-Medium.ed9c4b9af2fe3a8dd14d.woff",
+    "static/media/CabinetGrotesk-Black.woff": "/static/media/CabinetGrotesk-Black.82541dc8d6ed997e68bf.woff",
+    "static/media/CabinetGrotesk-Thin.woff": "/static/media/CabinetGrotesk-Thin.8c5e2b17be388c8bb543.woff",
+    "static/media/icon-close.svg": "/static/media/icon-close.809bc7c7ad5d734d3afbeb60b107930c.svg",
+    "index.html": "/index.html",
+    "main.52a8d786.css.map": "/static/css/main.52a8d786.css.map",
+    "main.dfddcefc.js.map": "/static/js/main.dfddcefc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52a8d786.css",
+    "static/js/main.dfddcefc.js"
+  ]
+}
