@@ -27,13 +27,10 @@ function App() {
 
   useEffect(() => {
     getWeather().then((data) => {
-      console.log(data);
       setTemp(Math.round(data.main.temp));
       setWeather(data.weather[0].description);
     });
   }, []);
-
-  console.log(temp, weather);
 
   const handleOpenPopup = () => {
     setActiveModal('create');
