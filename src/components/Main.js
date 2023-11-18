@@ -19,13 +19,13 @@ export default function Main({ weatherTemp = '', onSelectCard }) {
   });
 
   return (
-    <div className="main">
+    <main className="main">
       <h1 className="main__header">Today is {weatherTemp} F / You may want to wear:</h1>
       <ul className="main__cards-list">
         {filterCards.map((card) => {
           return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
         })}
       </ul>
-    </div>
+    </main>
   );
 }
