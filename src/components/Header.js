@@ -1,9 +1,20 @@
+import React from 'react';
 import '../blocks/Header.css';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
 
+import Checkbox from './Checkbox';
+
 export default function Header({ onOpenPopup }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
+
+  // checkbox
+  const [checked, setChecked] = React.useState(false);
+  const handleChecked = () => {
+    setChecked(!checked);
+    console.log(checked);
+  };
+  //////
 
   return (
     <header className="header">
@@ -13,6 +24,7 @@ export default function Header({ onOpenPopup }) {
       </div>
 
       <div className="header__profile">
+        <Checkbox value={checked} onChange={handleChecked}></Checkbox>
         <button onClick={onOpenPopup} type="text" className="header__profile-add-clothes-btn">
           + Add clothes
         </button>
