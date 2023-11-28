@@ -26,7 +26,6 @@
 }
 
 .header__profile-add-clothes-btn {
-  font-family: 'Cabinet Grotesk Regular', sans-serif;
   font-size: 20px;
   color: #000;
   font-weight: 700;
@@ -46,5 +45,13 @@
 .header__profile-user-avatar {
   width: 40px;
   height: 40px;
-  margin-left: 88px;
+}
+
+.header__profile-link:link,
+.header__profile-link:visited {
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  gap: 12px;
 }

@@ -1,7 +1,7 @@
 import iconClose from '../images/icon-close.svg';
 import '../blocks/ModalWithForm.css';
 
-export default function ModalWithForm({ children, type, title, button, handleClosePopup }) {
+export default function ModalWithForm({ children, type, title, button, handleClosePopup, isOpen, onSubmit }) {
   return (
     <div className={`popup popup__${type}`}>
       <div className="popup__container popup__container_type_form">
@@ -10,7 +10,7 @@ export default function ModalWithForm({ children, type, title, button, handleClo
         </button>
         <h2 className="popup__title">{title}</h2>
 
-        <form className="popup__form" name="newClothesForm">
+        <form onSubmit={onSubmit} className="popup__form" name="newClothesForm">
           {children}
           <button type="submit" className="popup__btn-submit">
             {button}

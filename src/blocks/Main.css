@@ -11,10 +11,3 @@
   margin-top: 0;
   margin-bottom: 34px;
 }
-
-.main__cards-list {
-  padding: 0;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, 323px);
-}

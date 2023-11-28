@@ -25,7 +25,7 @@ export default function Main({ weatherTemp = '', onSelectCard }) {
       <h1 className="main__header">
         Today is {currentTemperatureUnit === 'F' ? weatherTemp.F : weatherTemp.C}°{currentTemperatureUnit}/ You may want to wear:
       </h1>
-      <ul className="main__cards-list">
+      <ul className="cards-list main__cards-list">
         {filterCards.map((card) => {
           return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
         })}

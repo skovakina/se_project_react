@@ -1,0 +1,14 @@
+.user {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+.user__name {
+  padding: 0;
+  margin: 0;
+}
+
+.user__avatar {
+  width: 40px;
+  height: 40px;
+}

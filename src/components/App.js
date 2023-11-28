@@ -6,10 +6,13 @@ import Footer from './Footer';
 import Header from './Header';
 import WeatherCard from './WeatherCard';
 import ModalItem from './ItemModal';
+import Profile from './Profile';
+import AddItemModal from './AddItemModal';
 import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import defaultClothingItems from '../utils/constants';
 
 import Main from './Main';
-import ModalWithForm from './ModalWithForm';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -47,43 +50,29 @@ function App() {
     currentTemperatureUnit === 'F' ? setCurrentTemperatureUnit('C') : setCurrentTemperatureUnit('F');
   };
 
+  const onAddItem = (data) => {
+    data._id = defaultClothingItems.length;
+    defaultClothingItems.push(data);
+    console.log(data, defaultClothingItems);
+  };
+
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleCurrentTemperature }}>
-        <Header onOpenPopup={openItemModal} />
-        <WeatherCard day={true} weather="cloudy" weatherTemp={currentTemperatureUnit === 'F' ? temp.F : temp.C} weatherDesc={weather} />
+        <BrowserRouter>
+          <Header onOpenPopup={openItemModal} />
+          <Switch>
+            <Route path="/profile" onSelectCard={handleSelectedCard}>
+              <Profile />
+            </Route>
+            <Route exact path="/">
+              <WeatherCard day={true} weather="cloudy" weatherTemp={currentTemperatureUnit === 'F' ? temp.F : temp.C} weatherDesc={weather} />
+              <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            </Route>
+          </Switch>
+        </BrowserRouter>
 
-        <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
-
-        {activeModal === 'create' && (
-          <ModalWithForm type="newClothes" title="New garment" button="Add garment" handleClosePopup={closeItemModal}>
-            <label htmlFor="name" className="popup__label">
-              Name
-            </label>
-            <input required type="text" id="name" minLength="2" maxLength="30" name="name" className="popup__form-input" placeholder="Name" />
-            <span className="popup__input-error card-title-error"></span>
-            <label htmlFor="card-link" className="popup__label">
-              Image
-            </label>
-            <input required type="url" id="card-link" name="link" className="popup__form-input" placeholder="Image URL" />
-            <span className="popup__input-error card-link-error"></span>
-            <fieldset className="popup__fieldset">
-              <legend className="popup__legend">Select the weather type:</legend>
-              <div>
-                <input type="radio" id="hot" name="weather" />
-                <label htmlFor="hot">Hot</label>
-              </div>
-              <div>
-                <input type="radio" id="warm" name="weather" />
-                <label htmlFor="warm">Warm</label>
-              </div>
-              <div>
-                <input type="radio" id="cold" name="weather" />
-                <label htmlFor="cold">Cold</label>
-              </div>
-            </fieldset>
-          </ModalWithForm>
-        )}
+        {activeModal === 'create' && <AddItemModal handleClosePopup={closeItemModal} isOpen={activeModal === 'create'} onAddItem={onAddItem} />}
 
         {activeModal === 'preview' && <ModalItem selectedCard={selectedCard} handleClosePopup={closeItemModal} />}
 

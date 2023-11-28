@@ -1,0 +1,29 @@
+.clothes-section {
+  margin-top: 68px;
+}
+
+.clothes-section__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 20px;
+}
+
+.clothes-section__header-text {
+  padding: 0;
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.clothes-section__header-button {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Cabinet Grotesk Regular', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
