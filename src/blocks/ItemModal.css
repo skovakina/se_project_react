@@ -34,7 +34,7 @@
   overflow: hidden;
 }
 
-.popup__footer {
+.popup__description {
   padding: 20px 32px 32px;
   display: grid;
   gap: 12px;
@@ -43,4 +43,20 @@
 .popup__text {
   padding: 0;
   margin: 0;
+}
+
+.popup__btn-delete {
+  position: absolute;
+  right: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ff4d00;
+  cursor: pointer;
+  /* UI text style 1 */
+  font-family: 'Cabinet Grotesk Regular', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
 }

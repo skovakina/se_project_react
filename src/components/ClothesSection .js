@@ -1,7 +1,6 @@
 import ItemCard from './ItemCard';
-import defaultClothingItems from '../utils/constants';
 
-export default function ClothesSection({ onSelectCard }) {
+export default function ClothesSection({ onSelectCard, clothingItems }) {
   return (
     <section className="clothes-section">
       <div className="clothes-section__header">
@@ -12,7 +11,7 @@ export default function ClothesSection({ onSelectCard }) {
       </div>
 
       <ul className="cards-list clothes-section__cards-list">
-        {defaultClothingItems.map((card) => {
+        {clothingItems.map((card) => {
           return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
         })}
       </ul>

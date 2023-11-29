@@ -6,7 +6,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
     _id: 0,
     name: '',
     weather: '',
-    link: '',
+    imageUrl: '',
   });
 
   const handleInputChange = (event) => {
@@ -19,8 +19,8 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
 
   const handleSubmitItem = (event) => {
     event.preventDefault();
+    console.log(formData);
     onAddItem(formData);
-    handleClosePopup();
   };
 
   return (
@@ -43,21 +43,27 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
       <label htmlFor="card-link" className="popup__label">
         Image
       </label>
-      <input required type="url" id="card-link" name="link" className="popup__form-input" placeholder="Image URL" onChange={handleInputChange} />
+      <input required type="url" id="card-link" name="imageUrl" className="popup__form-input" placeholder="Image URL" onChange={handleInputChange} />
       <span className="popup__input-error card-link-error"></span>
       <fieldset className="popup__fieldset">
         <legend className="popup__legend">Select the weather type:</legend>
         <div onChange={handleInputChange}>
           <input required type="radio" id="hot" name="weather" value="Hot" />
-          <label htmlFor="hot">Hot</label>
+          <label className="popup__fieldset-label" htmlFor="hot">
+            Hot
+          </label>
         </div>
         <div onChange={handleInputChange}>
           <input type="radio" id="warm" name="weather" value="Warm" />
-          <label htmlFor="warm">Warm</label>
+          <label className="popup__fieldset-label" htmlFor="warm">
+            Warm
+          </label>
         </div>
         <div onChange={handleInputChange}>
           <input type="radio" id="cold" name="weather" value="Cold" />
-          <label htmlFor="cold">Cold</label>
+          <label className="popup__fieldset-label" htmlFor="cold">
+            Cold
+          </label>
         </div>
       </fieldset>
     </ModalWithForm>
