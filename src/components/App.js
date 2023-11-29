@@ -7,7 +7,7 @@ import WeatherCard from './WeatherCard';
 import ModalItem from './ItemModal';
 import Profile from './Profile';
 import AddItemModal from './AddItemModal';
-import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
+import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import defaultClothingItems from '../utils/constants';
 

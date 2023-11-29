@@ -1,4 +1,4 @@
-import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
+import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import { useContext } from 'react';
 
 export default function WeatherCard({ day, weather, weatherTemp = '', weatherDesc = '' }) {

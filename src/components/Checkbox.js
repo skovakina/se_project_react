@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
+import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 
 export default function Checkbox() {
   const { currentTemperatureUnit, handleCurrentTemperature } = useContext(CurrentTemperatureUnitContext);
