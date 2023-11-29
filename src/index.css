@@ -1,3 +1,18 @@
+@import url(./vendor/fonts.css);
+@import url(./vendor/normalize.css);
+@import url(./blocks/App.css);
+@import url(./blocks/Checkbox.css);
+@import url(./blocks/ClothesSection.css);
+@import url(./blocks/Footer.css);
+@import url(./blocks/Header.css);
+@import url(./blocks/ItemCard.css);
+@import url(./blocks/ItemModal.css);
+@import url(./blocks/Main.css);
+@import url(./blocks/ModalWithForm.css);
+@import url(./blocks/Profile.css);
+@import url(./blocks/SideBar.css);
+@import url(./blocks/WeatherCard.css);
+
 body {
   margin: 0;
   background: #f3f3f3;

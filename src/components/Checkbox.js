@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import '../blocks/Checkbox.css';
 import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
 
 export default function Checkbox() {

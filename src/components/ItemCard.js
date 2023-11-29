@@ -1,5 +1,3 @@
-import '../blocks/ItemCard.css';
-
 export default function ItemCard({ card, onSelectCard }) {
   return (
     <li className="item-card" onClick={() => onSelectCard(card)}>

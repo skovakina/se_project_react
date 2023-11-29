@@ -1,5 +1,4 @@
 import React from 'react';
-import '../blocks/Header.css';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
 import Checkbox from './Checkbox';

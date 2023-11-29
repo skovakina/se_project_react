@@ -1,5 +1,4 @@
 import iconClose from '../images/icon-close.svg';
-import '../blocks/ItemModal.css';
 
 export default function ModalItem({ selectedCard, handleClosePopup }) {
   console.log(selectedCard);

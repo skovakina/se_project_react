@@ -1,6 +1,4 @@
 // import logo from '../images/logo.svg';
-import '../blocks/App.css';
-import '../vendor/fonts.css';
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
 import Footer from './Footer';
 import Header from './Header';

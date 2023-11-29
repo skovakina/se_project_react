@@ -1,4 +1,3 @@
-import '../blocks/SideBar.css';
 import avatar from '../images/avatar.png';
 
 export default function SideBar() {

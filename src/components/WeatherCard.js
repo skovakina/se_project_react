@@ -1,4 +1,3 @@
-import '../blocks/WeatherCard.css';
 import { CurrentTemperatureUnitContext } from '../context/CurrentTemperatureUnitContext';
 import { useContext } from 'react';
 

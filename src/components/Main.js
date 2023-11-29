@@ -1,4 +1,3 @@
-import '../blocks/Main.css';
 import ItemCard from './ItemCard';
 import defaultClothingItems from '../utils/constants';
 import { useMemo, useContext } from 'react';
