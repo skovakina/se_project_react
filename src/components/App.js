@@ -4,7 +4,7 @@ import { getItems, postItem, deleteItem } from '../utils/serverApi';
 import Footer from './Footer';
 import Header from './Header';
 import WeatherCard from './WeatherCard';
-import ModalItem from './ItemModal';
+import ItemModal from './ItemModal';
 import Profile from './Profile';
 import AddItemModal from './AddItemModal';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
@@ -20,11 +20,13 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [temp, setTemp] = useState(0);
   const [weather, setWeather] = useState('');
+  const [location, setLocation] = useState('');
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
 
   useEffect(() => {
     getWeather()
       .then((data) => {
+        setLocation(data.name);
         setTemp(parseWeatherData(data));
         setWeather(data.weather[0].description);
       })
@@ -86,7 +88,7 @@ function App() {
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleCurrentTemperature }}>
         <BrowserRouter>
-          <Header onOpenPopup={openItemModal} />
+          <Header onOpenPopup={openItemModal} location={location} />
           <Switch>
             <Route path="/profile">
               <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
@@ -102,7 +104,7 @@ function App() {
           <AddItemModal handleClosePopup={closeItemModal} isOpen={activeModal === 'create'} onAddItem={handleAddItemSubmit} />
         )}
 
-        {activeModal === 'preview' && <ModalItem selectedCard={selectedCard} handleClosePopup={closeItemModal} handleDeleteItem={handleDeleteItem} />}
+        {activeModal === 'preview' && <ItemModal selectedCard={selectedCard} handleClosePopup={closeItemModal} handleDeleteItem={handleDeleteItem} />}
 
         <Footer />
       </CurrentTemperatureUnitContext.Provider>

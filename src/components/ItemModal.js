@@ -1,6 +1,6 @@
 import iconClose from '../images/icon-close.svg';
 
-export default function ModalItem({ selectedCard, handleClosePopup, handleDeleteItem }) {
+export default function ItemModal({ selectedCard, handleClosePopup, handleDeleteItem }) {
   const handleDeleteCard = (event) => {
     event.preventDefault();
     handleDeleteItem(selectedCard);

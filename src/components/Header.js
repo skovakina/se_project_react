@@ -1,14 +1,14 @@
 import React from 'react';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
-import Checkbox from './Checkbox';
+import ToggleSwitch from './ToggleSwitch';
 
 import { NavLink } from 'react-router-dom';
 
-export default function Header({ onOpenPopup }) {
+export default function Header({ onOpenPopup, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
-  // checkbox
+  // ToggleSwitch
   const [checked, setChecked] = React.useState(false);
   const handleChecked = () => {
     setChecked(!checked);
@@ -23,11 +23,11 @@ export default function Header({ onOpenPopup }) {
           <img src={logo} alt="WTWR logo" className="header__logo" />
         </NavLink>
 
-        <div className="header__date">{currentDate}</div>
+        <div className="header__today">{`${currentDate}, ${location}`}</div>
       </div>
 
       <div className="header__profile">
-        <Checkbox value={checked} onChange={handleChecked}></Checkbox>
+        <ToggleSwitch value={checked} onChange={handleChecked}></ToggleSwitch>
         <button onClick={onOpenPopup} type="button" className="header__profile-add-clothes-btn">
           + Add clothes
         </button>

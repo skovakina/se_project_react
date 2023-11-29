@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 
-export default function Checkbox() {
+export default function ToggleSwitch() {
   const { currentTemperatureUnit, handleCurrentTemperature } = useContext(CurrentTemperatureUnitContext);
 
   return (
