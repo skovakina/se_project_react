@@ -89,7 +89,7 @@ function App() {
           <Header onOpenPopup={openItemModal} />
           <Switch>
             <Route path="/profile">
-              <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} />
+              <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
             </Route>
             <Route exact path="/">
               <WeatherCard day={true} weather="cloudy" weatherTemp={currentTemperatureUnit === 'F' ? temp.F : temp.C} weatherDesc={weather} />

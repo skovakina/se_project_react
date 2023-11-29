@@ -1,11 +1,11 @@
 import ItemCard from './ItemCard';
 
-export default function ClothesSection({ onSelectCard, clothingItems }) {
+export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
   return (
     <section className="clothes-section">
       <div className="clothes-section__header">
         <h1 className="clothes-section__header-text">Your items</h1>
-        <button type="button" className="clothes-section__header-button">
+        <button onClick={onOpenPopup} type="button" className="clothes-section__header-button">
           + Add clothes
         </button>
       </div>
