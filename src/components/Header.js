@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
 import ToggleSwitch from './ToggleSwitch';
+import '../blocks/Header.css';
 
 import { NavLink } from 'react-router-dom';
 

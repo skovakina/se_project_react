@@ -1,4 +1,5 @@
 import iconClose from '../images/icon-close.svg';
+import '../blocks/ModalWithForm.css';
 
 export default function ModalWithForm({ children, type, title, button, handleClosePopup, isOpen, onSubmit }) {
   return (

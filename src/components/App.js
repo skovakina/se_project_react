@@ -9,7 +9,7 @@ import Profile from './Profile';
 import AddItemModal from './AddItemModal';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import defaultClothingItems from '../utils/constants';
+import '../blocks/App.css';
 
 import Main from './Main';
 import { useState, useEffect } from 'react';
@@ -94,8 +94,7 @@ function App() {
               <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
             </Route>
             <Route exact path="/">
-              <WeatherCard day={true} weather="cloudy" weatherTemp={currentTemperatureUnit === 'F' ? temp.F : temp.C} weatherDesc={weather} />
-              <Main clothingItems={clothingItems} weatherTemp={temp} onSelectCard={handleSelectedCard} />
+              <Main clothingItems={clothingItems} weatherTemp={temp} onSelectCard={handleSelectedCard} weather={weather} />
             </Route>
           </Switch>
         </BrowserRouter>

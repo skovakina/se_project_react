@@ -1,8 +1,10 @@
 import ItemCard from './ItemCard';
+import WeatherCard from './WeatherCard';
 import { useMemo, useContext } from 'react';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
+import '../blocks/Main.css';
 
-export default function Main({ weatherTemp = '', onSelectCard, clothingItems }) {
+export default function Main({ weatherTemp = '', onSelectCard, clothingItems, weather }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const weatherType = useMemo(() => {
     if (weatherTemp.F >= 86) {
@@ -20,6 +22,7 @@ export default function Main({ weatherTemp = '', onSelectCard, clothingItems }) 
 
   return (
     <main className="main">
+      <WeatherCard day={true} weather="cloudy" weatherTemp={currentTemperatureUnit === 'F' ? weatherTemp.F : weatherTemp.C} weatherDesc={weather} />
       <h1 className="main__header">
         Today is {currentTemperatureUnit === 'F' ? weatherTemp.F : weatherTemp.C}°{currentTemperatureUnit}/ You may want to wear:
       </h1>

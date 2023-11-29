@@ -1,4 +1,5 @@
 import ItemCard from './ItemCard';
+import '../blocks/ClothesSection.css';
 
 export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
   return (

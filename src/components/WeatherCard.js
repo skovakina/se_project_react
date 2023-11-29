@@ -1,5 +1,6 @@
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import { useContext } from 'react';
+import '../blocks/WeatherCard.css';
 
 export default function WeatherCard({ day, weather, weatherTemp = '', weatherDesc = '' }) {
   const timeOfDay = day ? 'day' : 'night';

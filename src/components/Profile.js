@@ -1,5 +1,6 @@
 import SideBar from './SideBar';
 import ClothesSection from './ClothesSection ';
+import '../blocks/Profile.css';
 
 export default function Profile({ onSelectCard, clothingItems, onOpenPopup }) {
   return (
