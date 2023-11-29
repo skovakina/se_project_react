@@ -60,7 +60,7 @@ function App() {
     setActiveModal('preview');
   };
 
-  const handleCurrentTemperature = () => {
+  const handleToggleSwitchChange = () => {
     currentTemperatureUnit === 'F' ? setCurrentTemperatureUnit('C') : setCurrentTemperatureUnit('F');
   };
 
@@ -86,7 +86,7 @@ function App() {
 
   return (
     <div className="App">
-      <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleCurrentTemperature }}>
+      <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <BrowserRouter>
           <Header onOpenPopup={openItemModal} location={location} />
           <Switch>
