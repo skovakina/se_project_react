@@ -6,7 +6,8 @@ import '../blocks/Main.css';
 
 export default function Main({ weatherTemp = '', onSelectCard, clothingItems, weather }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const weatherType = useMemo(() => {
+
+  const getWeatherType = () => {
     if (weatherTemp.F >= 86) {
       return 'hot';
     } else if (weatherTemp.F >= 66 && weatherTemp.F <= 85) {
@@ -14,7 +15,9 @@ export default function Main({ weatherTemp = '', onSelectCard, clothingItems, we
     } else if (weatherTemp.F <= 65) {
       return 'cold';
     }
-  }, [weatherTemp.F]);
+  };
+
+  const weatherType = getWeatherType();
 
   const filterCards = clothingItems.filter((card) => {
     return card.weather.toLocaleLowerCase() === weatherType;
