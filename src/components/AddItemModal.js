@@ -1,26 +1,39 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import ModalWithForm from './ModalWithForm';
 
 export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
   const [formData, setFormData] = useState({
-    _id: 0,
     name: '',
     weather: '',
     imageUrl: '',
   });
+  const [name, setName] = useState('');
+  const [weather, setWeather] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setName('');
+      setWeather('');
+      setImageUrl('');
+    }
+  }, [isOpen]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === 'name') {
+      setName(value);
+    } else if (name === 'weather') {
+      setWeather(value);
+    } else if (name === 'imageUrl') {
+      setImageUrl(value);
+    }
   };
 
   const handleSubmitItem = (event) => {
     event.preventDefault();
-    console.log(formData);
-    onAddItem(formData);
+    const data = { name, weather, imageUrl };
+    onAddItem(data);
   };
 
   return (
@@ -38,12 +51,22 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
         className="popup__form-input"
         placeholder="Name"
         onChange={handleInputChange}
+        value="name"
       />
       <span className="popup__input-error card-title-error"></span>
       <label htmlFor="card-link" className="popup__label">
         Image
       </label>
-      <input required type="url" id="card-link" name="imageUrl" className="popup__form-input" placeholder="Image URL" onChange={handleInputChange} />
+      <input
+        required
+        type="url"
+        id="card-link"
+        name="imageUrl"
+        className="popup__form-input"
+        placeholder="Image URL"
+        onChange={handleInputChange}
+        value="imageUrl"
+      />
       <span className="popup__input-error card-link-error"></span>
       <fieldset className="popup__fieldset">
         <legend className="popup__legend">Select the weather type:</legend>

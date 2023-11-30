@@ -38,7 +38,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((cards) => {
-        console.log(cards); // hooray! it's logging cards
         setClothingItems(cards);
       })
       .catch((err) => {
@@ -51,7 +50,6 @@ function App() {
   };
 
   const closeItemModal = () => {
-    console.log('close');
     setActiveModal('');
   };
 
@@ -61,14 +59,13 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === 'F' ? setCurrentTemperatureUnit('C') : setCurrentTemperatureUnit('F');
+    setCurrentTemperatureUnit(currentTemperatureUnit === 'F' ? 'C' : 'F');
   };
 
   const handleAddItemSubmit = (data) => {
-    data._id = clothingItems.reduce((max, item) => (item._id > max ? item._id : max), 0) + 1;
     postItem(data)
-      .then(() => {
-        setClothingItems([data, ...clothingItems]);
+      .then((res) => {
+        setClothingItems([res, ...clothingItems]);
         closeItemModal();
       })
       .catch((error) => {
@@ -77,11 +74,15 @@ function App() {
   };
 
   const handleDeleteItem = (card) => {
-    deleteItem(card._id).then(() => {
-      const updatedItems = clothingItems.filter((item) => item._id !== card._id);
-      setClothingItems(updatedItems);
-      closeItemModal();
-    });
+    deleteItem(card._id)
+      .then(() => {
+        const updatedItems = clothingItems.filter((item) => item._id !== card._id);
+        setClothingItems(updatedItems);
+        closeItemModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

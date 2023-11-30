@@ -9,14 +9,6 @@ import { NavLink } from 'react-router-dom';
 export default function Header({ onOpenPopup, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
-  // ToggleSwitch
-  const [checked, setChecked] = React.useState(false);
-  const handleChecked = () => {
-    setChecked(!checked);
-    console.log(checked);
-  };
-  //////
-
   return (
     <header className="header">
       <div className="header__welcome">
@@ -28,7 +20,7 @@ export default function Header({ onOpenPopup, location }) {
       </div>
 
       <div className="header__profile">
-        <ToggleSwitch value={checked} onChange={handleChecked}></ToggleSwitch>
+        <ToggleSwitch></ToggleSwitch>
         <button onClick={onOpenPopup} type="button" className="header__profile-add-clothes-btn">
           + Add clothes
         </button>
