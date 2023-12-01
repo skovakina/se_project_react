@@ -34,6 +34,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
     event.preventDefault();
     const data = { name, weather, imageUrl };
     onAddItem(data);
+    console.log(data);
   };
 
   return (
@@ -51,7 +52,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
         className="popup__form-input"
         placeholder="Name"
         onChange={handleInputChange}
-        value="name"
+        value={name}
       />
       <span className="popup__input-error card-title-error"></span>
       <label htmlFor="card-link" className="popup__label">
@@ -65,7 +66,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
         className="popup__form-input"
         placeholder="Image URL"
         onChange={handleInputChange}
-        value="imageUrl"
+        value={imageUrl}
       />
       <span className="popup__input-error card-link-error"></span>
       <fieldset className="popup__fieldset">
