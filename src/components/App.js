@@ -3,7 +3,6 @@ import { getWeather, parseWeatherData } from '../utils/weatherApi';
 import { getItems, postItem, deleteItem } from '../utils/serverApi';
 import Footer from './Footer';
 import Header from './Header';
-import WeatherCard from './WeatherCard';
 import ItemModal from './ItemModal';
 import Profile from './Profile';
 import AddItemModal from './AddItemModal';
