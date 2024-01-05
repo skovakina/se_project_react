@@ -2,6 +2,9 @@ import ItemCard from './ItemCard';
 import '../blocks/ClothesSection.css';
 
 export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
+  const data = clothingItems.data;
+  console.log(data[0]);
+
   return (
     <section className="clothes-section">
       <div className="clothes-section__header">
@@ -12,7 +15,7 @@ export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopu
       </div>
 
       <ul className="cards-list clothes-section__cards-list">
-        {clothingItems.map((card) => {
+        {data.map((card) => {
           return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
         })}
       </ul>
