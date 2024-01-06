@@ -1,12 +1,15 @@
 // import logo from '../images/logo.svg';
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
-import { getItems, postItem, deleteItem } from '../utils/serverApi';
+import { getItems, postItem, deleteItem, signup } from '../utils/serverApi';
 import Footer from './Footer';
 import Header from './Header';
 import ItemModal from './ItemModal';
 import Profile from './Profile';
 import AddItemModal from './AddItemModal';
+import RegisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../blocks/App.css';
 
@@ -14,6 +17,7 @@ import Main from './Main';
 import { useState, useEffect } from 'react';
 
 function App() {
+  const [loggedIn, seLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
@@ -57,6 +61,14 @@ function App() {
     setActiveModal('preview');
   };
 
+  const openRegisterModal = () => {
+    setActiveModal('register');
+  };
+
+  const openLoginModal = () => {
+    setActiveModal('login');
+  };
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === 'F' ? 'C' : 'F');
   };
@@ -84,11 +96,21 @@ function App() {
       });
   };
 
+  const handleSignup = (user) => {
+    signup(user)
+      .then(() => {
+        closeItemModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <BrowserRouter>
-          <Header onOpenPopup={openItemModal} location={location} />
+          <Header openItemModal={openItemModal} openRegisterModal={openRegisterModal} openLoginModal={openLoginModal} location={location} />
           <Switch>
             <Route path="/profile">
               <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
@@ -105,6 +127,11 @@ function App() {
 
         {activeModal === 'preview' && <ItemModal selectedCard={selectedCard} handleClosePopup={closeItemModal} handleDeleteItem={handleDeleteItem} />}
 
+        {activeModal === 'register' && (
+          <RegisterModal handleClosePopup={closeItemModal} isOpen={activeModal === 'register'} onAddItem={handleSignup} />
+        )}
+
+        {activeModal === 'login' && <LoginModal handleClosePopup={closeItemModal} isOpen={activeModal === 'login'} onAddItem={handleAddItemSubmit} />}
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
     </div>

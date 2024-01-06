@@ -6,7 +6,7 @@ import '../blocks/Header.css';
 
 import { NavLink } from 'react-router-dom';
 
-export default function Header({ onOpenPopup, location }) {
+export default function Header({ openItemModal, openRegisterModal, openLoginModal, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
   return (
@@ -21,7 +21,13 @@ export default function Header({ onOpenPopup, location }) {
 
       <div className="header__profile">
         <ToggleSwitch></ToggleSwitch>
-        <button onClick={onOpenPopup} type="button" className="header__profile-add-clothes-btn">
+        <button onClick={openRegisterModal} type="button" className="header__profile-add-clothes-btn">
+          Sign Up
+        </button>
+        <button onClick={openLoginModal} type="button" className="header__profile-add-clothes-btn">
+          Log in
+        </button>
+        <button onClick={openItemModal} type="button" className="header__profile-add-clothes-btn">
           + Add clothes
         </button>
         <NavLink to="/profile" className="header__profile-link">

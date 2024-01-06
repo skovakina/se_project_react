@@ -26,3 +26,16 @@ export function deleteItem(itemId) {
     headers: headers,
   }).then((res) => checkResponse(res));
 }
+
+export function signup(data) {
+  return fetch(`${baseUrl}/signup`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      name: data.name,
+      avatar: data.avatar,
+      email: data.email,
+      password: data.password,
+    }),
+  }).then((res) => checkResponse(res));
+}

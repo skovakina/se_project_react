@@ -2,11 +2,6 @@ import { React, useState, useEffect } from 'react';
 import ModalWithForm from './ModalWithForm';
 
 export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    weather: '',
-    imageUrl: '',
-  });
   const [name, setName] = useState('');
   const [weather, setWeather] = useState('');
   const [imageUrl, setImageUrl] = useState('');
