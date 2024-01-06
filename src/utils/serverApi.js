@@ -39,3 +39,11 @@ export function signup(data) {
     }),
   }).then((res) => checkResponse(res));
 }
+
+export function signin(data) {
+  return fetch(`${baseUrl}/signin`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({ email: data.email, password: data.password }),
+  }).then((res) => checkResponse(res));
+}

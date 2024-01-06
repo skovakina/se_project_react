@@ -1,6 +1,6 @@
 // import logo from '../images/logo.svg';
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
-import { getItems, postItem, deleteItem, signup } from '../utils/serverApi';
+import { getItems, postItem, deleteItem, signup, signin } from '../utils/serverApi';
 import Footer from './Footer';
 import Header from './Header';
 import ItemModal from './ItemModal';
@@ -106,6 +106,17 @@ function App() {
       });
   };
 
+  const handleSignin = (user) => {
+    signin(user)
+      .then((res) => {
+        console.log(res);
+        closeItemModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
@@ -131,7 +142,7 @@ function App() {
           <RegisterModal handleClosePopup={closeItemModal} isOpen={activeModal === 'register'} onAddItem={handleSignup} />
         )}
 
-        {activeModal === 'login' && <LoginModal handleClosePopup={closeItemModal} isOpen={activeModal === 'login'} onAddItem={handleAddItemSubmit} />}
+        {activeModal === 'login' && <LoginModal handleClosePopup={closeItemModal} isOpen={activeModal === 'login'} onSubmit={handleSignin} />}
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
     </div>

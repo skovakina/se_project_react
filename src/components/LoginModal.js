@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import ModalWithForm from './ModalWithForm';
 
-export default function AddItemModal({ handleClosePopup, onOpenPopup, isOpen }) {
+export default function AddItemModal({ handleClosePopup, onSubmit, isOpen }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,9 +22,8 @@ export default function AddItemModal({ handleClosePopup, onOpenPopup, isOpen }) 
 
   const handleSubmitItem = (event) => {
     event.preventDefault();
-    // const data = { name, weather, imageUrl };
-    // onAddItem(data);
-    console.log(event);
+    const data = { email, password };
+    onSubmit(data);
   };
 
   return (
