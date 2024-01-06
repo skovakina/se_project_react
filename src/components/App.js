@@ -100,6 +100,9 @@ function App() {
     signup(user)
       .then(() => {
         closeItemModal();
+        const data = { email: user.email, password: user.password };
+        console.log(data);
+        handleSignin(data);
       })
       .catch((error) => {
         console.error(error);
