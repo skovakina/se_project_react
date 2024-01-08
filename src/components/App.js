@@ -1,6 +1,7 @@
 // import logo from '../images/logo.svg';
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
-import { getItems, postItem, deleteItem, signup, signin } from '../utils/serverApi';
+import { getItems, postItem, deleteItem } from '../utils/serverApi';
+import { signup, signin, checkToken } from '../utils/auth';
 import Footer from './Footer';
 import Header from './Header';
 import ItemModal from './ItemModal';
@@ -8,16 +9,18 @@ import Profile from './Profile';
 import AddItemModal from './AddItemModal';
 import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
+import ProtectedRoute from './ProtectedRoute';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import '../blocks/App.css';
 
 import Main from './Main';
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [loggedIn, seLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
@@ -48,6 +51,10 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
   const openItemModal = () => {
     setActiveModal('create');
   };
@@ -74,7 +81,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (data) => {
-    postItem(data)
+    postItem(data, getToken())
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
         closeItemModal();
@@ -85,7 +92,7 @@ function App() {
   };
 
   const handleDeleteItem = (card) => {
-    deleteItem(card._id)
+    deleteItem(card._id, getToken())
       .then(() => {
         const updatedItems = clothingItems.filter((item) => item._id !== card._id);
         setClothingItems(updatedItems);
@@ -101,7 +108,6 @@ function App() {
       .then(() => {
         closeItemModal();
         const data = { email: user.email, password: user.password };
-        console.log(data);
         handleSignin(data);
       })
       .catch((error) => {
@@ -112,12 +118,28 @@ function App() {
   const handleSignin = (user) => {
     signin(user)
       .then((res) => {
-        console.log(res);
+        if (res.token) {
+          localStorage.setItem('jwt', res.token);
+        }
         closeItemModal();
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const getToken = () => localStorage.getItem('jwt');
+
+  const handleTokenCheck = () => {
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      checkToken(jwt).then((res) => {
+        // add data to user profile
+        // set logged in true
+        setLoggedIn(true);
+        console.log(isLoggedIn);
+      });
+    }
   };
 
   return (
@@ -126,9 +148,10 @@ function App() {
         <BrowserRouter>
           <Header openItemModal={openItemModal} openRegisterModal={openRegisterModal} openLoginModal={openLoginModal} location={location} />
           <Switch>
-            <Route path="/profile">
+            <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
               <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
-            </Route>
+            </ProtectedRoute>
+
             <Route exact path="/">
               <Main clothingItems={clothingItems} weatherTemp={temp} onSelectCard={handleSelectedCard} weather={weather} />
             </Route>
