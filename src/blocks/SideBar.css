@@ -1,7 +1,15 @@
 .side-bar {
   margin-top: 47px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.side-bar__user {
+  display: flex;
   gap: 16px;
+  margin-bottom: 16px;
 }
 
 .side-bar__name {

@@ -1,7 +1,16 @@
 import ItemCard from './ItemCard';
 import '../blocks/ClothesSection.css';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useContext } from 'react';
 
 export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser._id);
+
+  const filterCards = clothingItems.filter((card) => {
+    return currentUser._id === card.owner;
+  });
+
   return (
     <section className="clothes-section">
       <div className="clothes-section__header">
@@ -12,7 +21,7 @@ export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopu
       </div>
 
       <ul className="cards-list clothes-section__cards-list">
-        {clothingItems.map((card) => {
+        {filterCards.map((card) => {
           return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
         })}
       </ul>

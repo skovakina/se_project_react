@@ -34,3 +34,14 @@ export function deleteItem(itemId, token) {
     },
   }).then((res) => checkResponse(res));
 }
+
+export function updateUser(user, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name: user.name, avatar: user.avatar }),
+  }).then((res) => checkResponse(res));
+}

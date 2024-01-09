@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 //  variables
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
-import { getItems, postItem, deleteItem } from '../utils/serverApi';
+import { getItems, postItem, deleteItem, updateUser } from '../utils/serverApi';
 import { signup, signin, checkToken } from '../utils/auth';
 //  components
 import Main from './Main';
@@ -14,6 +14,7 @@ import Profile from './Profile';
 import AddItemModal from './AddItemModal';
 import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
+import EditProfileModal from './EditProfileModal';
 import ProtectedRoute from './ProtectedRoute';
 //  context
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
@@ -79,6 +80,10 @@ function App() {
     setActiveModal('login');
   };
 
+  const openEditProfileModal = () => {
+    setActiveModal('edit');
+  };
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === 'F' ? 'C' : 'F');
   };
@@ -87,6 +92,18 @@ function App() {
     postItem(data, getToken())
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
+        closeItemModal();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleProfileSubmit = (user) => {
+    console.log(user);
+    updateUser(user, getToken())
+      .then((res) => {
+        setCurrentUser(res.data);
         closeItemModal();
       })
       .catch((error) => {
@@ -155,7 +172,12 @@ function App() {
             <Header openItemModal={openItemModal} openRegisterModal={openRegisterModal} openLoginModal={openLoginModal} location={location} />
             <Switch>
               <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
-                <Profile onSelectCard={handleSelectedCard} clothingItems={clothingItems} onOpenPopup={openItemModal} />
+                <Profile
+                  openEditProfileModal={openEditProfileModal}
+                  onSelectCard={handleSelectedCard}
+                  clothingItems={clothingItems}
+                  onOpenPopup={openItemModal}
+                />
               </ProtectedRoute>
 
               <Route exact path="/">
@@ -166,6 +188,10 @@ function App() {
 
           {activeModal === 'create' && (
             <AddItemModal handleClosePopup={closeItemModal} isOpen={activeModal === 'create'} onAddItem={handleAddItemSubmit} />
+          )}
+
+          {activeModal === 'edit' && (
+            <EditProfileModal handleClosePopup={closeItemModal} isOpen={activeModal === 'edit'} onSubmit={handleProfileSubmit} />
           )}
 
           {activeModal === 'preview' && (
