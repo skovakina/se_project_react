@@ -45,3 +45,23 @@ export function updateUser(user, token) {
     body: JSON.stringify({ name: user.name, avatar: user.avatar }),
   }).then((res) => checkResponse(res));
 }
+
+export function likeItem(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+}
+
+export function dislikeItem(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+}

@@ -23,11 +23,15 @@
   cursor: pointer;
 }
 
-.item-card__text {
+.item-card__header {
   position: absolute;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+.item-card__name {
   display: inline-block;
   background-color: #fff;
   padding: 2px 12px;
@@ -37,4 +41,20 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 20px; /* 125% */
+}
+
+.item-card__like {
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.item-card__like_default {
+  background-image: url(../images/like-default.svg);
+}
+
+.item-card__like_liked {
+  background-image: url(../images/like-liked.svg);
 }

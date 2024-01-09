@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 //  variables
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
-import { getItems, postItem, deleteItem, updateUser } from '../utils/serverApi';
+import { getItems, postItem, deleteItem, updateUser, likeItem, dislikeItem } from '../utils/serverApi';
 import { signup, signin, checkToken } from '../utils/auth';
 //  components
 import Main from './Main';
@@ -163,7 +163,25 @@ function App() {
       });
     }
   };
-  console.log(currentUser);
+
+  const handleCardLike = (id, isLiked) => {
+    const token = localStorage.getItem('jwt');
+
+    isLiked
+      ? dislikeItem(id, token)
+          .then((updatedCard) => {
+            console.log(updatedCard, 'disliked');
+            setClothingItems((cards) => cards.map((card) => (card._id === id ? updatedCard : card)));
+          })
+          .catch((err) => console.log(err))
+      : likeItem(id, token)
+          .then((updatedCard) => {
+            console.log(updatedCard, 'liked');
+            setClothingItems((cards) => cards.map((card) => (card._id === id ? updatedCard : card)));
+          })
+          .catch((err) => console.log(err));
+  };
+
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
@@ -181,7 +199,13 @@ function App() {
               </ProtectedRoute>
 
               <Route exact path="/">
-                <Main clothingItems={clothingItems} weatherTemp={temp} onSelectCard={handleSelectedCard} weather={weather} />
+                <Main
+                  clothingItems={clothingItems}
+                  weatherTemp={temp}
+                  onSelectCard={handleSelectedCard}
+                  weather={weather}
+                  handleCardLike={handleCardLike}
+                />
               </Route>
             </Switch>
           </BrowserRouter>

@@ -4,7 +4,7 @@ import { useMemo, useContext } from 'react';
 import { CurrentTemperatureUnitContext } from '../contexts/CurrentTemperatureUnitContext';
 import '../blocks/Main.css';
 
-export default function Main({ weatherTemp = '', onSelectCard, clothingItems, weather }) {
+export default function Main({ weatherTemp = '', onSelectCard, clothingItems, weather, handleCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const getWeatherType = () => {
@@ -31,7 +31,7 @@ export default function Main({ weatherTemp = '', onSelectCard, clothingItems, we
       </h1>
       <ul className="cards-list main__cards-list">
         {filterCards.map((card) => {
-          return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
+          return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} handleCardLike={handleCardLike} />;
         })}
       </ul>
     </main>
