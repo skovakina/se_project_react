@@ -1,7 +1,14 @@
 import iconClose from '../images/icon-close.svg';
 import '../blocks/ItemModal.css';
 
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useContext } from 'react';
+
 export default function ItemModal({ selectedCard, handleClosePopup, handleDeleteItem }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const isOwn = selectedCard.owner === currentUser._id;
+  const itemDeleteButtonClassName = `popup__btn-delete ${isOwn ? 'popup__btn-delete_visible' : 'popup__btn-delete_hidden'}`;
+
   const handleDeleteCard = (event) => {
     event.preventDefault();
     handleDeleteItem(selectedCard);
@@ -16,7 +23,7 @@ export default function ItemModal({ selectedCard, handleClosePopup, handleDelete
         <img src={selectedCard.imageUrl} alt={selectedCard.name} className="popup__item-img" />
 
         <div className="popup__description">
-          <button onClick={handleDeleteCard} className="popup__btn-delete">
+          <button onClick={handleDeleteCard} className={itemDeleteButtonClassName}>
             Delete item
           </button>
           <h2 className="popup__title">{selectedCard.name}</h2>

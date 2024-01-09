@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../images/logo.png';
 import avatar from '../images/avatar.png';
 import ToggleSwitch from './ToggleSwitch';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../blocks/Header.css';
 
 import { NavLink } from 'react-router-dom';
 
 export default function Header({ openItemModal, openRegisterModal, openLoginModal, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
