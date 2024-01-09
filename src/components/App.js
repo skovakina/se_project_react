@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import React from 'react';
 //  variables
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
@@ -23,7 +23,6 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../blocks/App.css';
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
@@ -32,6 +31,8 @@ function App() {
   const [location, setLocation] = useState('');
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [currentUser, setCurrentUser] = useState({});
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     getWeather()
@@ -100,7 +101,6 @@ function App() {
   };
 
   const handleProfileSubmit = (user) => {
-    console.log(user);
     updateUser(user, getToken())
       .then((res) => {
         setCurrentUser(res.data);
@@ -170,13 +170,11 @@ function App() {
     isLiked
       ? dislikeItem(id, token)
           .then((updatedCard) => {
-            console.log(updatedCard, 'disliked');
             setClothingItems((cards) => cards.map((card) => (card._id === id ? updatedCard : card)));
           })
           .catch((err) => console.log(err))
       : likeItem(id, token)
           .then((updatedCard) => {
-            console.log(updatedCard, 'liked');
             setClothingItems((cards) => cards.map((card) => (card._id === id ? updatedCard : card)));
           })
           .catch((err) => console.log(err));
@@ -185,7 +183,7 @@ function App() {
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
-        <CurrentUserContext.Provider value={{ currentUser }}>
+        <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
           <BrowserRouter>
             <Header openItemModal={openItemModal} openRegisterModal={openRegisterModal} openLoginModal={openLoginModal} location={location} />
             <Switch>

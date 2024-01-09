@@ -25,6 +25,17 @@
   gap: 20px;
 }
 
+.header__navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header__login {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .header__profile-add-clothes-btn {
   font-size: 20px;
   color: #000;

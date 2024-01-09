@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Header({ openItemModal, openRegisterModal, openLoginModal, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -20,22 +20,29 @@ export default function Header({ openItemModal, openRegisterModal, openLoginModa
 
         <div className="header__today">{`${currentDate}, ${location}`}</div>
       </div>
-
-      <div className="header__profile">
+      <div className="header__navigation">
         <ToggleSwitch></ToggleSwitch>
-        <button onClick={openRegisterModal} type="button" className="header__profile-add-clothes-btn">
-          Sign Up
-        </button>
-        <button onClick={openLoginModal} type="button" className="header__profile-add-clothes-btn">
-          Log in
-        </button>
-        <button onClick={openItemModal} type="button" className="header__profile-add-clothes-btn">
-          + Add clothes
-        </button>
-        <NavLink to="/profile" className="header__profile-link">
-          <p className="header__profile-user-name">Terrence Tegegne</p>
-          <img src={avatar} alt="Avatar" className="header__profile-user-avatar" />
-        </NavLink>
+
+        {!isLoggedIn ? (
+          <div className="header__login">
+            <button onClick={openRegisterModal} type="button" className="header__profile-add-clothes-btn">
+              Sign Up
+            </button>
+            <button onClick={openLoginModal} type="button" className="header__profile-add-clothes-btn">
+              Log in
+            </button>
+          </div>
+        ) : (
+          <div className="header__profile">
+            <button onClick={openItemModal} type="button" className="header__profile-add-clothes-btn">
+              + Add clothes
+            </button>
+            <NavLink to="/profile" className="header__profile-link">
+              <p className="header__profile-user-name">Terrence Tegegne</p>
+              <img src={avatar} alt="Avatar" className="header__profile-user-avatar" />
+            </NavLink>
+          </div>
+        )}
       </div>
     </header>
   );
