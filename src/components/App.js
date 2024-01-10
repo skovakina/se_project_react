@@ -57,7 +57,7 @@ function App() {
 
   useEffect(() => {
     updateCurrentUser();
-  });
+  }, []);
 
   const openItemModal = () => {
     setActiveModal('create');
@@ -158,7 +158,6 @@ function App() {
       .then((res) => {
         setCurrentUser(res.data);
         setLoggedIn(true);
-        console.log(currentUser, isLoggedIn);
       })
       .catch((err) => console.log(err));
   };

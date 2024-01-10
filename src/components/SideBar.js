@@ -1,5 +1,6 @@
 import '../blocks/SideBar.css';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import React, { useContext } from 'react';
 
 export default function SideBar({ openEditProfileModal, onLogOut }) {
   const { currentUser } = useContext(CurrentUserContext);
