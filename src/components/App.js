@@ -197,6 +197,7 @@ function App() {
                   clothingItems={clothingItems}
                   onOpenPopup={openItemModal}
                   onLogOut={logout}
+                  handleCardLike={handleCardLike}
                 />
               </ProtectedRoute>
 

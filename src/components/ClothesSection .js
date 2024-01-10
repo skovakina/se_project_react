@@ -5,7 +5,6 @@ import { useContext } from 'react';
 
 export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser._id);
 
   const filterCards = clothingItems.filter((card) => {
     return currentUser._id === card.owner;
