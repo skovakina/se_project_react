@@ -12,7 +12,7 @@ export default function AddItemModal({ handleClosePopup, onSubmit, isOpen }) {
       setName(currentUser.name);
       setAvatar(currentUser.avatar);
     }
-  }, [isOpen]);
+  }, [isOpen, currentUser.name, currentUser.avatar]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

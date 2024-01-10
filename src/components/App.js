@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 //  variables
 import { getWeather, parseWeatherData } from '../utils/weatherApi';
@@ -31,7 +31,6 @@ function App() {
   const [location, setLocation] = useState('');
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const [currentUser, setCurrentUser] = useState({});
-
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -57,8 +56,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    handleTokenCheck();
-  }, []);
+    updateCurrentUser();
+  });
 
   const openItemModal = () => {
     setActiveModal('create');
@@ -90,6 +89,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (data) => {
+    console.log(data);
     postItem(data, getToken())
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
@@ -142,6 +142,8 @@ function App() {
         if (res.token) {
           localStorage.setItem('jwt', res.token);
         }
+        console.log(res);
+        setLoggedIn(true);
         closeItemModal();
       })
       .catch((error) => {
@@ -151,17 +153,19 @@ function App() {
 
   const getToken = () => localStorage.getItem('jwt');
 
-  const handleTokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      checkToken(jwt).then((res) => {
-        // add data to user profile
-        setCurrentUser(res.data); // user data avatar, email, _id, name
-
-        // set logged in true
+  const updateCurrentUser = () => {
+    checkToken(localStorage.getItem('jwt'))
+      .then((res) => {
+        setCurrentUser(res.data);
         setLoggedIn(true);
-      });
-    }
+        console.log(currentUser, isLoggedIn);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const logout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
   };
 
   const handleCardLike = (id, isLiked) => {
@@ -193,6 +197,7 @@ function App() {
                   onSelectCard={handleSelectedCard}
                   clothingItems={clothingItems}
                   onOpenPopup={openItemModal}
+                  onLogOut={logout}
                 />
               </ProtectedRoute>
 

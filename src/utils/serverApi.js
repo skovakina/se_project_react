@@ -21,7 +21,7 @@ export function postItem(data, token) {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ _id: data._id, name: data.name, weather: data.weather, imageUrl: data.imageUrl }),
+    body: JSON.stringify({ name: data.name, weather: data.weather, imageUrl: data.imageUrl }),
   }).then((res) => checkResponse(res));
 }
 

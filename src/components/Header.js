@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import logo from '../images/logo.png';
-import avatar from '../images/avatar.png';
 import ToggleSwitch from './ToggleSwitch';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../blocks/Header.css';
@@ -9,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Header({ openItemModal, openRegisterModal, openLoginModal, location }) {
   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -38,8 +37,8 @@ export default function Header({ openItemModal, openRegisterModal, openLoginModa
               + Add clothes
             </button>
             <NavLink to="/profile" className="header__profile-link">
-              <p className="header__profile-user-name">Terrence Tegegne</p>
-              <img src={avatar} alt="Avatar" className="header__profile-user-avatar" />
+              <p className="header__profile-user-name">{currentUser.name}</p>
+              <img src={currentUser.avatar} alt="Avatar" className="header__profile-user-avatar" />
             </NavLink>
           </div>
         )}

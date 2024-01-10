@@ -67,19 +67,19 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
       <fieldset className="popup__fieldset">
         <legend className="popup__legend">Select the weather type:</legend>
         <div onChange={handleInputChange}>
-          <input required type="radio" id="hot" name="weather" value="Hot" />
+          <input required type="radio" id="hot" name="weather" value="hot" />
           <label className="popup__fieldset-label" htmlFor="hot">
             Hot
           </label>
         </div>
         <div onChange={handleInputChange}>
-          <input type="radio" id="warm" name="weather" value="Warm" />
+          <input type="radio" id="warm" name="weather" value="warm" />
           <label className="popup__fieldset-label" htmlFor="warm">
             Warm
           </label>
         </div>
         <div onChange={handleInputChange}>
-          <input type="radio" id="cold" name="weather" value="Cold" />
+          <input type="radio" id="cold" name="weather" value="cold" />
           <label className="popup__fieldset-label" htmlFor="cold">
             Cold
           </label>
