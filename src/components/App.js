@@ -89,7 +89,6 @@ function App() {
   };
 
   const handleAddItemSubmit = (data) => {
-    console.log(data);
     postItem(data, getToken())
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
@@ -142,7 +141,7 @@ function App() {
         if (res.token) {
           localStorage.setItem('jwt', res.token);
         }
-        console.log(res);
+        setCurrentUser(res.user);
         setLoggedIn(true);
         closeItemModal();
       })
@@ -164,6 +163,7 @@ function App() {
 
   const logout = () => {
     setLoggedIn(false);
+    setCurrentUser({});
     localStorage.removeItem('jwt');
   };
 

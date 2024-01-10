@@ -3,7 +3,7 @@ import '../blocks/ClothesSection.css';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useContext } from 'react';
 
-export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup }) {
+export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopup, handleCardLike }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   const filterCards = clothingItems.filter((card) => {
@@ -21,7 +21,7 @@ export default function ClothesSection({ onSelectCard, clothingItems, onOpenPopu
 
       <ul className="cards-list clothes-section__cards-list">
         {filterCards.map((card) => {
-          return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} />;
+          return <ItemCard key={card._id} onSelectCard={onSelectCard} card={card} handleCardLike={handleCardLike} />;
         })}
       </ul>
     </section>
