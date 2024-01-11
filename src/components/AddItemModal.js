@@ -29,7 +29,6 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen }) {
     event.preventDefault();
     const data = { name, weather, imageUrl };
     onAddItem(data);
-    console.log(data);
   };
 
   return (

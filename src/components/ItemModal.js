@@ -6,7 +6,6 @@ import { useContext } from 'react';
 
 export default function ItemModal({ selectedCard, handleClosePopup, handleDeleteItem }) {
   const { currentUser } = useContext(CurrentUserContext);
-  // console.log(currentUser);
   const isOwn = selectedCard.owner === currentUser._id;
   const itemDeleteButtonClassName = `popup__btn-delete ${isOwn ? 'popup__btn-delete_visible' : 'popup__btn-delete_hidden'}`;
 
