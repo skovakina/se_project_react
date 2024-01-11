@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import ModalWithForm from './ModalWithForm';
 
-export default function AddItemModal({ handleClosePopup, onSubmit, isOpen }) {
+export default function LoginModal({ handleClosePopup, onSubmit, isOpen, openRegisterModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,7 +27,14 @@ export default function AddItemModal({ handleClosePopup, onSubmit, isOpen }) {
   };
 
   return (
-    <ModalWithForm type="login" title="Log in" button="Log In" handleClosePopup={handleClosePopup} onSubmit={handleSubmitItem}>
+    <ModalWithForm
+      type="login"
+      title="Log in"
+      button="Log In"
+      handleClosePopup={handleClosePopup}
+      onSubmit={handleSubmitItem}
+      openRegisterModal={openRegisterModal}
+    >
       <label htmlFor="email" className="popup__label">
         Email
       </label>

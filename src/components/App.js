@@ -153,12 +153,15 @@ function App() {
   const getToken = () => localStorage.getItem('jwt');
 
   const updateCurrentUser = () => {
-    checkToken(localStorage.getItem('jwt'))
-      .then((res) => {
-        setCurrentUser(res.data);
-        setLoggedIn(true);
-      })
-      .catch((err) => console.log(err));
+    const token = getToken();
+    if (token) {
+      checkToken(localStorage.getItem('jwt'))
+        .then((res) => {
+          setCurrentUser(res.data);
+          setLoggedIn(true);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const logout = () => {
@@ -226,10 +229,22 @@ function App() {
           )}
 
           {activeModal === 'register' && (
-            <RegisterModal handleClosePopup={closeItemModal} isOpen={activeModal === 'register'} onAddItem={handleSignup} />
+            <RegisterModal
+              handleClosePopup={closeItemModal}
+              isOpen={activeModal === 'register'}
+              onAddItem={handleSignup}
+              openLoginModal={openLoginModal}
+            />
           )}
 
-          {activeModal === 'login' && <LoginModal handleClosePopup={closeItemModal} isOpen={activeModal === 'login'} onSubmit={handleSignin} />}
+          {activeModal === 'login' && (
+            <LoginModal
+              handleClosePopup={closeItemModal}
+              isOpen={activeModal === 'login'}
+              onSubmit={handleSignin}
+              openRegisterModal={openRegisterModal}
+            />
+          )}
         </CurrentUserContext.Provider>
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
