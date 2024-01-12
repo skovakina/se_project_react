@@ -35,6 +35,12 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen, open
     onAddItem(data);
   };
 
+  const secondaryButton = (
+    <button type="button" className="popup__btn_secondary" onClick={openLoginModal}>
+      or Login
+    </button>
+  );
+
   return (
     <ModalWithForm
       type="register"
@@ -42,7 +48,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen, open
       button="Register"
       handleClosePopup={handleClosePopup}
       onSubmit={handleSubmitItem}
-      openLoginModal={openLoginModal}
+      secondaryButton={secondaryButton}
     >
       <label htmlFor="name" className="popup__label">
         Name

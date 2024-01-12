@@ -8,6 +8,7 @@ export default function LoginModal({ handleClosePopup, onSubmit, isOpen, openReg
   useEffect(() => {
     if (isOpen) {
       setEmail('');
+      setPassword('');
     }
   }, [isOpen]);
 
@@ -26,6 +27,12 @@ export default function LoginModal({ handleClosePopup, onSubmit, isOpen, openReg
     onSubmit(data);
   };
 
+  const secondaryButton = (
+    <button type="button" className="popup__btn_secondary" onClick={openRegisterModal}>
+      or Register
+    </button>
+  );
+
   return (
     <ModalWithForm
       type="login"
@@ -33,7 +40,7 @@ export default function LoginModal({ handleClosePopup, onSubmit, isOpen, openReg
       button="Log In"
       handleClosePopup={handleClosePopup}
       onSubmit={handleSubmitItem}
-      openRegisterModal={openRegisterModal}
+      secondaryButton={secondaryButton}
     >
       <label htmlFor="email" className="popup__label">
         Email
