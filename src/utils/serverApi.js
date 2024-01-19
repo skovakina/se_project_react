@@ -1,6 +1,6 @@
 import checkResponse from './utils';
 
-const baseUrl = 'http://localhost:3001';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.wtwrsvko.crabdance.com/' : 'http://localhost:3001';
 const headers = {
   'Content-Type': 'application/json',
 };
@@ -25,8 +25,8 @@ export function postItem(data, token) {
   }).then((res) => checkResponse(res));
 }
 
-export function deleteItem(itemId, token) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+export function deleteItem(_id, token) {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

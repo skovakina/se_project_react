@@ -1,7 +1,7 @@
 import iconClose from '../images/icon-close.svg';
 import '../blocks/ModalWithForm.css';
 
-export default function ModalWithForm({ children, type, title, button, secondaryButton, handleClosePopup, onSubmit, openLoginModal }) {
+export default function ModalWithForm({ children, type, title, button, secondaryButton, handleClosePopup, onSubmit }) {
   return (
     <div className={`popup popup__${type}`}>
       <div className="popup__container popup__container_type_form">
