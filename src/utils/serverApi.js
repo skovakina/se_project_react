@@ -1,6 +1,6 @@
 import checkResponse from './utils';
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.wtwrsvko.crabdance.com/' : 'http://localhost:3001';
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://api.wtwrsvko.crabdance.com' : 'http://localhost:3001';
 const headers = {
   'Content-Type': 'application/json',
 };
