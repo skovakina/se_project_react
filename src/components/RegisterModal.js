@@ -97,7 +97,7 @@ export default function AddItemModal({ handleClosePopup, onAddItem, isOpen, open
       <span className="popup__input-error avatar-error"></span>
 
       <label htmlFor="password" className="popup__label">
-        Image
+        Password
       </label>
       <input
         required
